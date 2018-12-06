@@ -79,7 +79,7 @@ namespace PlutoRover.Test
             var rover = new Rover();
 
             // Act - going to need a new command to process a string input, not just 1 character at a time
-            rover.ProcessCommndString(input);
+            rover.ProcessCommandString(input);
 
             // work out the result to expect
             var result = "";

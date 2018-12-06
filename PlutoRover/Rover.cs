@@ -66,10 +66,16 @@ namespace PlutoRover
             // move the rover
             currentX = newX;
             currentY = newY;
+        }
 
+        public void ProcessCommandString(string command)
+        {
+            var commandlist = command.ToCharArray();
 
-
-
+            foreach (var c in commandlist)
+            {
+                ProcessCommand(c);
+            }
         }
 
     }
