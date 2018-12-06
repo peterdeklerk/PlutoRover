@@ -13,7 +13,7 @@ namespace PlutoRover.Test
             var rover = new Rover();
 
             // Assert
-            Assert.AreEqual("0,0,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
+            Assert.AreEqual("0,0,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
         }
     }
 }
