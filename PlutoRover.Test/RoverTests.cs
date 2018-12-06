@@ -184,6 +184,19 @@ namespace PlutoRover.Test
             Assert.AreEqual("0,4,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
+        // need to test moving around obstacle without a collision
+        [Test]
+        public void Rover_CheckNoCollision_ReturnTrueAnd47N()
+        {
+            // Arrange
+            var rover = new Rover();
 
+            // Act - return false if obstacle found
+            bool result = rover.ProcessCommandString("FFFFRFLFFRFFFLF");
+
+            // Assert
+            Assert.IsTrue(result);
+            Assert.AreEqual("4,7,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
+        }
     }
 }
