@@ -13,7 +13,7 @@ namespace PlutoRover.Test
             var rover = new Rover();
 
             // Assert
-            Assert.AreEqual("0,0,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
+            Assert.AreEqual("0,0,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
         // tests to ensure F and B from starting position is correct (going to work with a grid 10x10)
@@ -27,7 +27,7 @@ namespace PlutoRover.Test
             rover.ProcessCommand('F');
 
             // Assert
-            Assert.AreEqual("0,1,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
+            Assert.AreEqual("0,1,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace PlutoRover.Test
             rover.ProcessCommand('B');
 
             // Assert
-            Assert.AreEqual("0,9,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
+            Assert.AreEqual("0,9,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
         // test pressing L and R from the starting position
@@ -54,7 +54,7 @@ namespace PlutoRover.Test
             rover.ProcessCommand('L');
 
             // Assert
-            Assert.AreEqual("0,0,W", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
+            Assert.AreEqual("0,0,W", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace PlutoRover.Test
             rover.ProcessCommand('R');
 
             // Assert
-            Assert.AreEqual("0,0,E", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
+            Assert.AreEqual("0,0,E", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
 
