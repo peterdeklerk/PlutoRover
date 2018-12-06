@@ -138,19 +138,35 @@ namespace PlutoRover.Test
             Assert.AreEqual(result, string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
-
         // test movement and direction change combinations
         [Test]
-        public void Rover_PressFFRFFLBBB_Return29N()
+        public void Rover_PressCombination_CheckReturn(
+            [Values("FFRFFLBBB", "FFFFFRFFF", "RRFFFLFFFFLFF")] string input)
         {
             // Arrange
             var rover = new Rover();
 
             // Act
-            rover.ProcessCommandString("FFRFFLBBB");
+            rover.ProcessCommandString(input);
+
+            // work out the result to expect
+            var result = "";
+
+            switch (input)
+            {
+                case "FFRFFLBBB":
+                    result = "2,9,N";
+                    break;
+                case "FFFFFRFFF":
+                    result = "3,5,E";
+                    break;
+                case "RRFFFLFFFFLFF":
+                    result = "4,9,N";
+                    break;
+            }
 
             // Assert
-            Assert.AreEqual("2,9,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
+            Assert.AreEqual(result, string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
 

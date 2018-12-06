@@ -62,11 +62,16 @@ namespace PlutoRover
             switch (currentDirection)
             {
                 case DIRECTION.N:
-                case DIRECTION.S:
                     newY += moveby;
                     break;
-                default:
+                case DIRECTION.S:
+                    newY -= moveby;
+                    break;
+                case DIRECTION.E:
                     newX += moveby;
+                    break;
+                case DIRECTION.W:
+                    newX -= moveby;
                     break;
             }
 
