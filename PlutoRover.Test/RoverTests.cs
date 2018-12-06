@@ -155,7 +155,7 @@ namespace PlutoRover.Test
             switch (input)
             {
                 case "FFRFFLBBB":
-                    result = "0,2,N";
+                    result = "0,2,E";
                     break;
                 case "FFFFFRFFF":
                     result = "0,4,N";
