@@ -22,12 +22,7 @@ namespace PlutoRover
         private const int MaxY = 9;
 
         // define a list of obstacles to check against
-        private List<IObstacle> obstacles = new List<IObstacle>
-            {
-                new Obstacle { X = 2, Y = 5 },
-                new Obstacle { X = 1, Y = 2 },
-                new Obstacle { X = 0, Y = 5 }
-            };
+        private List<IObstacle> obstacles;
         #endregion 
 
         public Rover()
@@ -35,6 +30,14 @@ namespace PlutoRover
             currentX = 0;
             currentY = 0;
             currentDirection = DIRECTION.N;
+
+            // define the obstacles to avoid
+            obstacles = new List<IObstacle>
+                {
+                    new Obstacle { X = 2, Y = 5 },
+                    new Obstacle { X = 1, Y = 2 },
+                    new Obstacle { X = 0, Y = 5 }
+                };
         }
 
         // process to accept a command character and act accordingly (F, B, L, R)
