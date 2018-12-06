@@ -43,6 +43,35 @@ namespace PlutoRover.Test
             Assert.AreEqual("0,9,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
         }
 
+        // test pressing L and R from the starting position
+        [Test]
+        public void Rover_Press_L_FromStartingPosition_Return00W()
+        {
+            // Arrange
+            var rover = new Rover();
+
+            // Act
+            rover.ProcessCommand('L');
+
+            // Assert
+            Assert.AreEqual("0,0,W", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
+        }
+
+        [Test]
+        public void Rover_Press_R_FromStartingPosition_Return00E()
+        {
+            // Arrange
+            var rover = new Rover();
+
+            // Act
+            rover.ProcessCommand('R');
+
+            // Assert
+            Assert.AreEqual("0,0,E", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currenctDirection));
+        }
+
+
+
 
 
     }
