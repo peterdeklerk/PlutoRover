@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Direction.cs" />
+    <Compile Include="IObstacle.cs" />
+    <Compile Include="Obstacle.cs" />
     <Compile Include="Rover.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

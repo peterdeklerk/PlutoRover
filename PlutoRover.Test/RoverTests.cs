@@ -155,10 +155,10 @@ namespace PlutoRover.Test
             switch (input)
             {
                 case "FFRFFLBBB":
-                    result = "2,9,N";
+                    result = "0,2,N";
                     break;
                 case "FFFFFRFFF":
-                    result = "3,5,E";
+                    result = "0,4,N";
                     break;
                 case "RRFFFLFFFFLFF":
                     result = "4,9,N";
@@ -169,7 +169,20 @@ namespace PlutoRover.Test
             Assert.AreEqual(result, string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
+        // need to test obstacles next
+        [Test]
+        public void Rover_CheckForObstacles_ReturnTrueAnd04N()
+        {
+            // Arrange
+            var rover = new Rover();
 
+            // Act - return false if obstacle found
+            bool result = rover.ProcessCommandString("FFFFFRFFF");
+            
+            // Assert
+            Assert.IsFalse(result);
+            Assert.AreEqual("0,4,N", string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
+        }
 
 
     }

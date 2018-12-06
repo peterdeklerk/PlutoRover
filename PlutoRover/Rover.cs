@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace PlutoRover
 {
-    public enum DIRECTION
-    {
-        N, S, E, W
-    }
-
     public class Rover
     {
+        #region class properties
         // set a direction array to navigate by (instead of using big if conditionals)
         private DIRECTION[] dirArray = { DIRECTION.E, DIRECTION.S, DIRECTION.W, DIRECTION.N };
 
@@ -25,6 +21,15 @@ namespace PlutoRover
         private const int MaxX = 9;
         private const int MaxY = 9;
 
+        // define a list of obstacles to check against
+        private List<IObstacle> obstacles = new List<IObstacle>
+            {
+                new Obstacle { X = 2, Y = 5 },
+                new Obstacle { X = 1, Y = 2 },
+                new Obstacle { X = 0, Y = 5 }
+            };
+        #endregion 
+
         public Rover()
         {
             currentX = 0;
@@ -33,7 +38,7 @@ namespace PlutoRover
         }
 
         // process to accept a command character and act accordingly (F, B, L, R)
-        private void ProcessCommand(char command)
+        private bool ProcessCommand(char command)
         {
             // we need to process L and R now, do this first because if these are the commands then we don't have to move
             if ((command == 'L') || (command == 'R'))
@@ -49,7 +54,7 @@ namespace PlutoRover
                 currentDirection = dirArray[dirIndex];
 
                 // return, as we don't need to process the movements
-                return;
+                return true;
             }
 
             // Process commands for F and B, work out how much to move by
@@ -79,20 +84,40 @@ namespace PlutoRover
             newX = newX == -1 ? newX = MaxX : newX > MaxX ? 0 : newX;
             newY = newY == -1 ? newY = MaxY : newY > MaxY ? 0 : newY;
 
+            // check if there is an obstacle
+            if (DetectObstacle(newX, newY))
+            {
+                // there is an obstacle, return false to stop processing the string of commands
+                return false;
+            }
+
             // move the rover
             currentX = newX;
             currentY = newY;
+
+            return true;
         }
 
-        public void ProcessCommandString(string command)
+        public bool ProcessCommandString(string command)
         {
             var commandlist = command.ToCharArray();
+            bool noObstacle = true;
 
             foreach (var c in commandlist)
             {
-                ProcessCommand(c);
+                noObstacle = ProcessCommand(c);
+
+                if (!noObstacle)
+                    break;
             }
+
+            return noObstacle;
         }
 
+        public bool DetectObstacle(int x, int y)
+        {
+            var obstacle = obstacles.Select(o => o).Where(o => o.X == x && o.Y == y).FirstOrDefault();
+            return obstacle != null;
+        }
     }
 }
