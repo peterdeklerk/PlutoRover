@@ -104,6 +104,40 @@ namespace PlutoRover.Test
             Assert.AreEqual(result, string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
         }
 
+        // write test to make sure the navigation works correctly with multiple inputs of R
+        [Test]
+        public void Rover_Press_R_FromStartingPosition_CheckDirection(
+            [Values("RR", "RRR", "RRRR", "RRRRR")] string input)
+        {
+            // Arrange
+            var rover = new Rover();
+
+            // Act - going to need a new command to process a string input, not just 1 character at a time
+            rover.ProcessCommandString(input);
+
+            // work out the result to expect
+            var result = "";
+
+            switch (input)
+            {
+                case "RR":
+                    result = "0,0,S";
+                    break;
+                case "RRR":
+                    result = "0,0,W";
+                    break;
+                case "RRRR":
+                    result = "0,0,N";
+                    break;
+                case "RRRRR":
+                    result = "0,0,E";
+                    break;
+            }
+
+            // Assert
+            Assert.AreEqual(result, string.Format("{0},{1},{2}", rover.currentX, rover.currentY, rover.currentDirection));
+        }
+
 
     }
 }
