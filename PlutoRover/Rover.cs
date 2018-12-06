@@ -33,7 +33,7 @@ namespace PlutoRover
         }
 
         // process to accept a command character and act accordingly (F, B, L, R)
-        public void ProcessCommand(char command)
+        private void ProcessCommand(char command)
         {
             // we need to process L and R now, do this first because if these are the commands then we don't have to move
             if ((command == 'L') || (command == 'R'))
@@ -55,9 +55,20 @@ namespace PlutoRover
             // Process commands for F and B, work out how much to move by
             var moveby = command == 'F' ? 1 : command == 'B' ? -1 : 0;
 
-            // if N or S, then Y changes, if E or W, then X changes
+            // if N or S, then Y changes, if E or W, then X changes (we need to account for all directions now)
             int newX = currentX;
-            int newY = currentY + moveby;
+            int newY = currentY;
+
+            switch (currentDirection)
+            {
+                case DIRECTION.N:
+                case DIRECTION.S:
+                    newY += moveby;
+                    break;
+                default:
+                    newX += moveby;
+                    break;
+            }
 
             // make sure we wrap around the grid (IE if we reach the edge, go to the other side)
             newX = newX == -1 ? newX = MaxX : newX > MaxX ? 0 : newX;
